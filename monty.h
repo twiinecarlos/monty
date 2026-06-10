@@ -33,11 +33,33 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct bus_s - carries shared interpreter state
+ * @filename: path to the bytecode file
+ * @fp: open file pointer
+ * @line: current line buffer
+ * @push_arg: argument string for push opcode
+ *
+ * Description: global state bag passed between interpreter helpers
+ */
+typedef struct bus_s
+{
+	char *filename;
+	FILE *fp;
+	char *line;
+	char *push_arg;
+} bus_t;
+
 /* opcode functions */
 void op_push(stack_t **stack, unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);
 
-/* globals for push argument and file */
-extern char *push_arg;
+/* interpreter helpers */
+void free_stack(stack_t *stack);
+void run_line(stack_t **stack, unsigned int line_number);
+void run_file(void);
+
+/* global bus */
+extern bus_t bus;
 
 #endif /* MONTY_H */
