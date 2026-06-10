@@ -1,22 +1,18 @@
-
 #include "monty.h"
 
 char *arg = NULL;
 
 /**
  * main - entry point
- * @argc: argument count
- * @argv: argument vector
+ * @argc: arguments count
+ * @argv: arguments
  *
- * Return: 0 on success
+ * Return: 0 success
  */
 int main(int argc, char *argv[])
 {
 	FILE *file;
-	char line[1024];
-	unsigned int line_number = 0;
 	stack_t *stack = NULL;
-	char *opcode;
 
 	if (argc != 2)
 	{
@@ -25,42 +21,16 @@ int main(int argc, char *argv[])
 	}
 
 	file = fopen(argv[1], "r");
-	if (file == NULL)
+	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
-	while (fgets(line, sizeof(line), file))
-	{
-		line_number++;
+	read_file(file, &stack);
 
-		opcode = strtok(line, " \t\n");
-
-		if (opcode == NULL || opcode[0] == '#')
-			continue;
-
-		if (strcmp(opcode, "push") == 0)
-		{
-			arg = strtok(NULL, " \t\n");
-			push(&stack, line_number);
-		}
-		else if (strcmp(opcode, "pall") == 0)
-		{
-			pall(&stack, line_number);
-		}
-		else
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n",
-				line_number, opcode);
-			free_stack(stack);
-			fclose(file);
-			exit(EXIT_FAILURE);
-		}
-	}
-
-	free_stack(stack);
 	fclose(file);
+	free_stack(stack);
 
 	return (0);
 }
