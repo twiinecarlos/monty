@@ -7,10 +7,10 @@
 #include <ctype.h>
 
 /**
- * struct stack_s - doubly linked list representation of a stack
- * @n: integer
- * @prev: points to previous element
- * @next: points to next element
+ * struct stack_s - doubly linked list stack
+ * @n: integer value
+ * @prev: previous node
+ * @next: next node
  */
 typedef struct stack_s
 {
@@ -20,9 +20,9 @@ typedef struct stack_s
 } stack_t;
 
 /**
- * struct instruction_s - opcode and function
- * @opcode: opcode
- * @f: function to handle the opcode
+ * struct instruction_s - opcode mapping
+ * @opcode: command
+ * @f: function
  */
 typedef struct instruction_s
 {
@@ -30,12 +30,17 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/* global argument for push */
 extern char *arg;
 
+/* functions */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 
 int is_integer(char *str);
 void free_stack(stack_t *stack);
+
+void execute_line(char *line, stack_t **stack, unsigned int line_number);
+void read_file(FILE *file, stack_t **stack);
 
 #endif
