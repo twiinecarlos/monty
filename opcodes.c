@@ -8,27 +8,16 @@
 void op_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *node;
-	int n;
-	char *arg = push_arg;
-	char *endptr;
-	int i;
+	char *arg = bus.push_arg;
+	int i = 0;
 
-	/* validate argument */
-	if (!arg)
+	if (!arg || (arg[0] == '-' && !arg[1]))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	/* check each character is a digit (allow leading '-') */
-	i = 0;
 	if (arg[0] == '-')
 		i = 1;
-	if (!arg[i])
-	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
 	for (; arg[i]; i++)
 	{
 		if (arg[i] < '0' || arg[i] > '9')
@@ -37,24 +26,17 @@ void op_push(stack_t **stack, unsigned int line_number)
 			exit(EXIT_FAILURE);
 		}
 	}
-
-	n = atoi(arg);
-	(void)endptr;
-
 	node = malloc(sizeof(stack_t));
 	if (!node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-
-	node->n = n;
+	node->n = atoi(arg);
 	node->prev = NULL;
 	node->next = *stack;
-
 	if (*stack)
 		(*stack)->prev = node;
-
 	*stack = node;
 }
 
