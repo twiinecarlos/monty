@@ -4,14 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 /**
- * struct stack_s - doubly linked list representation of a stack (or queue)
+ * struct stack_s - doubly linked list representation of a stack
  * @n: integer
- * @prev: points to the previous element of the stack (or queue)
- * @next: points to the next element of the stack (or queue)
- *
- * Description: doubly linked list node structure for stack, queues, LIFO, FIFO
+ * @prev: points to previous element
+ * @next: points to next element
  */
 typedef struct stack_s
 {
@@ -21,11 +20,9 @@ typedef struct stack_s
 } stack_t;
 
 /**
- * struct instruction_s - opcode and its function
- * @opcode: the opcode
+ * struct instruction_s - opcode and function
+ * @opcode: opcode
  * @f: function to handle the opcode
- *
- * Description: opcode and its function for stack, queues, LIFO, FIFO
  */
 typedef struct instruction_s
 {
@@ -33,33 +30,12 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct bus_s - carries shared interpreter state
- * @filename: path to the bytecode file
- * @fp: open file pointer
- * @line: current line buffer
- * @push_arg: argument string for push opcode
- *
- * Description: global state bag passed between interpreter helpers
- */
-typedef struct bus_s
-{
-	char *filename;
-	FILE *fp;
-	char *line;
-	char *push_arg;
-} bus_t;
+extern char *arg;
 
-/* opcode functions */
-void op_push(stack_t **stack, unsigned int line_number);
-void op_pall(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
 
-/* interpreter helpers */
+int is_integer(char *str);
 void free_stack(stack_t *stack);
-void run_line(stack_t **stack, unsigned int line_number);
-void run_file(void);
 
-/* global bus */
-extern bus_t bus;
-
-#endif /* MONTY_H */
+#endif
