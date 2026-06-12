@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 typedef struct stack_s
 {
@@ -15,15 +14,17 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
-/* global argument */
 extern char *value;
 
+/* core */
 void push(stack_t **stack, unsigned int line_number, char *arg);
 void pall(stack_t **stack, unsigned int line_number);
 
-void execute(char *opcode, stack_t **stack, unsigned int line_number);
+/* engine */
+void execute(char *opcode, stack_t **stack, unsigned int line);
 void read_file(FILE *file, stack_t **stack);
 
+/* helpers */
 int is_integer(char *str);
 void free_stack(stack_t *stack);
 
