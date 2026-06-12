@@ -7,19 +7,19 @@ void read_file(FILE *file, stack_t **stack)
 	ssize_t read;
 	unsigned int line_number = 0;
 	char *opcode;
-	char *arg;
 
 	while ((read = getline(&line, &len, file)) != -1)
 	{
 		line_number++;
 
 		opcode = strtok(line, " \t\n");
-		arg = strtok(NULL, " \t\n");
+		value = strtok(NULL, " \t\n");
 
+		/* skip empty or blank lines */
 		if (!opcode)
 			continue;
 
-		execute(opcode, arg, stack, line_number);
+		execute(opcode, stack, line_number);
 	}
 
 	free(line);
