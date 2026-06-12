@@ -1,5 +1,10 @@
 #include "monty.h"
 
+/**
+ * is_integer - checks if string is integer
+ * @str: input string
+ * Return: 1 if valid, 0 otherwise
+ */
 int is_integer(char *str)
 {
 	int i = 0;
@@ -22,6 +27,12 @@ int is_integer(char *str)
 	return (1);
 }
 
+/**
+ * push - pushes value to stack
+ * @stack: stack pointer
+ * @line_number: line number
+ * @arg: value
+ */
 void push(stack_t **stack, unsigned int line_number, char *arg)
 {
 	stack_t *new_node;
