@@ -6,10 +6,6 @@
  * @stack: pointer to stack
  * @line: line number
  */
-
-
-#include "monty.h"
-
 void execute(char *opcode, stack_t **stack, unsigned int line)
 {
 	if (strcmp(opcode, "push") == 0)
