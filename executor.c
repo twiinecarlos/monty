@@ -1,9 +1,9 @@
 #include "monty.h"
 
-void execute(char *opcode, char *arg, stack_t **stack, unsigned int line)
+void execute(char *opcode, stack_t **stack, unsigned int line)
 {
 	if (strcmp(opcode, "push") == 0)
-		push(stack, line, arg);
+		push(stack, line, value);
 	else if (strcmp(opcode, "pall") == 0)
 		pall(stack, line);
 	else
