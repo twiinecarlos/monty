@@ -1,5 +1,10 @@
 #include "monty.h"
 
+/**
+ * read_file - reads bytecode file line by line
+ * @file: file pointer
+ * @stack: stack pointer
+ */
 void read_file(FILE *file, stack_t **stack)
 {
 	char *line = NULL;
@@ -13,13 +18,4 @@ void read_file(FILE *file, stack_t **stack)
 		line_number++;
 
 		opcode = strtok(line, " \t\n");
-		value = strtok(NULL, " \t\n");
-
-		if (!opcode)
-			continue;
-
-		execute(opcode, stack, line_number);
-	}
-
-	free(line);
-}
+		value =
