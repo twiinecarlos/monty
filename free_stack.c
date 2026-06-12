@@ -1,3 +1,4 @@
+#include "monty.h"
 /**
  * free_stack - frees stack
  * @stack: stack head
