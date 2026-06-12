@@ -15,7 +15,6 @@ void read_file(FILE *file, stack_t **stack)
 		opcode = strtok(line, " \t\n");
 		value = strtok(NULL, " \t\n");
 
-		/* skip empty or blank lines */
 		if (!opcode)
 			continue;
 
