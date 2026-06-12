@@ -1,3 +1,4 @@
+#include "monty.h"
 /**
  * pall - prints all stack values
  * @stack: pointer to stack
