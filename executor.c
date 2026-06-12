@@ -3,13 +3,14 @@
 /**
  * execute - executes opcode
  * @opcode: operation code
+ * @arg: argument for opcode
  * @stack: pointer to stack
  * @line: line number
  */
-void execute(char *opcode, stack_t **stack, unsigned int line)
+void execute(char *opcode, char *arg, stack_t **stack, unsigned int line)
 {
 	if (strcmp(opcode, "push") == 0)
-		push(stack, line, value);
+		push(stack, line, arg);
 	else if (strcmp(opcode, "pall") == 0)
 		pall(stack, line);
 	else
