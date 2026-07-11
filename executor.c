@@ -19,6 +19,8 @@ void execute(char *opcode, char *arg, stack_t **stack, unsigned int line)
 		pop(stack, line);
 	else if (strcmp(opcode, "swap") == 0)
 		swap(stack, line);
+	else if (strcmp(opcode, "add") == 0)
+		add(stack, line);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line, opcode);
