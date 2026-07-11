@@ -24,8 +24,10 @@ int is_integer(char *str)
 			return (0);
 		i++;
 	}
+
 	return (1);
 }
+
 
 /**
  * push - pushes value to stack
@@ -36,6 +38,7 @@ int is_integer(char *str)
 void push(stack_t **stack, unsigned int line_number, char *arg)
 {
 	stack_t *new_node;
+	stack_t *temp;
 
 	if (!is_integer(arg))
 	{
@@ -44,6 +47,7 @@ void push(stack_t **stack, unsigned int line_number, char *arg)
 	}
 
 	new_node = malloc(sizeof(stack_t));
+
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -52,10 +56,35 @@ void push(stack_t **stack, unsigned int line_number, char *arg)
 
 	new_node->n = atoi(arg);
 	new_node->prev = NULL;
-	new_node->next = *stack;
+	new_node->next = NULL;
 
-	if (*stack)
-		(*stack)->prev = new_node;
 
-	*stack = new_node;
+	/* STACK MODE */
+	if (mode == 's')
+	{
+		new_node->next = *stack;
+
+		if (*stack)
+			(*stack)->prev = new_node;
+
+		*stack = new_node;
+	}
+
+	/* QUEUE MODE */
+	else
+	{
+		if (*stack == NULL)
+		{
+			*stack = new_node;
+			return;
+		}
+
+		temp = *stack;
+
+		while (temp->next)
+			temp = temp->next;
+
+		temp->next = new_node;
+		new_node->prev = temp;
+	}
 }
