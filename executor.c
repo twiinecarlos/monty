@@ -13,6 +13,8 @@ void execute(char *opcode, char *arg, stack_t **stack, unsigned int line)
 		push(stack, line, arg);
 	else if (strcmp(opcode, "pall") == 0)
 		pall(stack, line);
+	else if (strcmp(opcode, "pint") == 0)
+		pint(stack, line);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line, opcode);
