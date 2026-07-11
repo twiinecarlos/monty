@@ -23,10 +23,14 @@ void read_file(FILE *file, stack_t **stack)
 		line_number++;
 
 		opcode = strtok(line, " \t\n");
-		arg = strtok(NULL, " \t\n");
 
 		if (!opcode)
 			continue;
+
+		if (opcode[0] == '#')
+			continue;
+
+		arg = strtok(NULL, " \t\n");
 
 		execute(opcode, arg, stack, line_number);
 	}
