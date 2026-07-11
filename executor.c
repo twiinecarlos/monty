@@ -31,6 +31,8 @@ void execute(char *opcode, char *arg, stack_t **stack, unsigned int line)
 		mul(stack, line);
 	else if (strcmp(opcode, "mod") == 0)
 		mod(stack, line);
+	else if (strcmp(opcode, "pchar") == 0)
+		pchar(stack, line);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line, opcode);
