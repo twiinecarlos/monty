@@ -28,7 +28,6 @@ int is_integer(char *str)
 	return (1);
 }
 
-
 /**
  * push - pushes value to stack
  * @stack: stack pointer
@@ -58,8 +57,6 @@ void push(stack_t **stack, unsigned int line_number, char *arg)
 	new_node->prev = NULL;
 	new_node->next = NULL;
 
-
-	/* STACK MODE */
 	if (mode == 's')
 	{
 		new_node->next = *stack;
@@ -69,8 +66,6 @@ void push(stack_t **stack, unsigned int line_number, char *arg)
 
 		*stack = new_node;
 	}
-
-	/* QUEUE MODE */
 	else
 	{
 		if (*stack == NULL)
