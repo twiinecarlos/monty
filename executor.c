@@ -37,6 +37,8 @@ void execute(char *opcode, char *arg, stack_t **stack, unsigned int line)
 		pstr(stack, line);
 	else if (strcmp(opcode, "rotl") == 0)
 		rotl(stack, line);
+	else if (strcmp(opcode, "rotr") == 0)
+		rotr(stack, line);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line, opcode);
