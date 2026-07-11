@@ -21,6 +21,8 @@ void execute(char *opcode, char *arg, stack_t **stack, unsigned int line)
 		swap(stack, line);
 	else if (strcmp(opcode, "add") == 0)
 		add(stack, line);
+	else if (strcmp(opcode, "nop") == 0)
+		nop(stack, line);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line, opcode);
