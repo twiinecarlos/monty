@@ -27,6 +27,8 @@ void execute(char *opcode, char *arg, stack_t **stack, unsigned int line)
 		sub(stack, line);
 	else if (strcmp(opcode, "div") == 0)
 		div_op(stack, line);
+	else if (strcmp(opcode, "mul") == 0)
+		mul(stack, line);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line, opcode);
