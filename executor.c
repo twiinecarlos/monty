@@ -23,6 +23,8 @@ void execute(char *opcode, char *arg, stack_t **stack, unsigned int line)
 		add(stack, line);
 	else if (strcmp(opcode, "nop") == 0)
 		nop(stack, line);
+	else if (strcmp(opcode, "sub") == 0)
+		sub(stack, line);
 	else
 	{
 		fprintf(stderr, "L%u: unknown instruction %s\n", line, opcode);
