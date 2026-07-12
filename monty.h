@@ -12,9 +12,6 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
-extern char *value;
-extern char mode;
-
 void push(stack_t **stack, unsigned int line_number, char *arg);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
@@ -30,9 +27,6 @@ void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
-
-void stack_mode(stack_t **stack, unsigned int line_number);
-void queue_mode(stack_t **stack, unsigned int line_number);
 
 void execute(char *opcode, char *arg, stack_t **stack, unsigned int line);
 void read_file(FILE *file, stack_t **stack);
