@@ -3,7 +3,7 @@
 /**
  * rotr - rotates the stack to the bottom
  * @stack: pointer to the stack
- * @line_number: line number of the opcode
+ * @line_number: line number
  */
 void rotr(stack_t **stack, unsigned int line_number)
 {
@@ -11,7 +11,7 @@ void rotr(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	if (stack == NULL || *stack ==NULL || (*stack)->next == NULL)
 		return;
 
 	last = *stack;
