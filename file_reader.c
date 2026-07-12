@@ -1,9 +1,5 @@
 #define _GNU_SOURCE
 #include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/types.h>
 
 /**
  * read_file - reads bytecode file
@@ -14,12 +10,11 @@ void read_file(FILE *file, stack_t **stack)
 {
 	char *line = NULL;
 	size_t len = 0;
-	ssize_t read;
 	unsigned int line_number = 0;
 	char *opcode;
 	char *arg;
 
-	while ((read = getline(&line, &len, file)) != -1)
+	while (getline(&line, &len, file) != -1)
 	{
 		line_number++;
 
