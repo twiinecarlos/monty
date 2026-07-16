@@ -38,6 +38,10 @@ void execute(char *opcode, char *arg, stack_t **stack, unsigned int line)
                 rotl(stack, line);
         else if (strcmp(opcode, "rotr") == 0)
                 rotr(stack, line);
+        else if (strcmp(opcode, "stack") == 0)
+                stack_mode(stack, line);
+        else if (strcmp(opcode, "queue") == 0)
+                queue_mode(stack, line);
         else
         {
                 fprintf(stderr, "L%u: unknown instruction %s\n", line, opcode);
