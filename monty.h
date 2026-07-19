@@ -1,23 +1,24 @@
 #ifndef MONTY_H
 #define MONTY_H
-
 #define _GNU_SOURCE
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
-
+/**
+ * struct stack_s - doubly linked list representation of a stack (or queue)
+ * @n: integer
+ * @prev: points to the previous element of the stack (or queue)
+ * @next: points to the next element of the stack (or queue)
+ */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
-
 extern char *value;
 extern char mode;
-
 void push(stack_t **stack, unsigned int line_number, char *arg);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
@@ -35,11 +36,9 @@ void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
 void stack_mode(stack_t **stack, unsigned int line_number);
 void queue_mode(stack_t **stack, unsigned int line_number);
-
+void insert_node(stack_t **stack, stack_t *new_node);
 void execute(char *opcode, char *arg, stack_t **stack, unsigned int line);
 void read_file(FILE *file, stack_t **stack);
-
 int is_integer(char *str);
 void free_stack(stack_t *stack);
-
 #endif
